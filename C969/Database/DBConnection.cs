@@ -20,8 +20,6 @@ namespace C969.Database
                 string constr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
                 conn = new MySqlConnection(constr);
                 conn.Open();
-
-                MessageBox.Show("Connection is open");
             }
             catch (MySqlException ex)
             {
@@ -41,7 +39,7 @@ namespace C969.Database
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Connection is closed");
+                MessageBox.Show(ex.Message);
             }
         }
     }
