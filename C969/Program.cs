@@ -18,7 +18,7 @@ namespace C969
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DBConnection.startConnection();
-            Application.Run(new Form1());
+            Application.Run(new Login());
             DBConnection.closeConnection();
         }
     }
