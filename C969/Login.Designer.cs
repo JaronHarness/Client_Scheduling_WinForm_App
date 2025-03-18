@@ -34,6 +34,7 @@
             this.LoginFormPasswordTextBox = new System.Windows.Forms.TextBox();
             this.LoginFormLoginButton = new System.Windows.Forms.Button();
             this.LoginFormExitButton = new System.Windows.Forms.Button();
+            this.LoginFormTitleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LoginFormUsernameLabel
@@ -87,11 +88,22 @@
             this.LoginFormExitButton.UseVisualStyleBackColor = true;
             this.LoginFormExitButton.Click += new System.EventHandler(this.LoginFormExitButton_Click);
             // 
+            // LoginFormTitleLabel
+            // 
+            this.LoginFormTitleLabel.AutoSize = true;
+            this.LoginFormTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginFormTitleLabel.Location = new System.Drawing.Point(12, 9);
+            this.LoginFormTitleLabel.Name = "LoginFormTitleLabel";
+            this.LoginFormTitleLabel.Size = new System.Drawing.Size(54, 20);
+            this.LoginFormTitleLabel.TabIndex = 6;
+            this.LoginFormTitleLabel.Text = "Log In";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 372);
+            this.Controls.Add(this.LoginFormTitleLabel);
             this.Controls.Add(this.LoginFormExitButton);
             this.Controls.Add(this.LoginFormLoginButton);
             this.Controls.Add(this.LoginFormPasswordTextBox);
@@ -113,6 +125,7 @@
         private System.Windows.Forms.TextBox LoginFormPasswordTextBox;
         private System.Windows.Forms.Button LoginFormLoginButton;
         private System.Windows.Forms.Button LoginFormExitButton;
+        private System.Windows.Forms.Label LoginFormTitleLabel;
     }
 }
 
