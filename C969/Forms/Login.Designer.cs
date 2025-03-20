@@ -77,6 +77,7 @@
             this.LoginFormLoginButton.TabIndex = 4;
             this.LoginFormLoginButton.Text = "Log In";
             this.LoginFormLoginButton.UseVisualStyleBackColor = true;
+            this.LoginFormLoginButton.Click += new System.EventHandler(this.LoginFormLoginButton_Click);
             // 
             // LoginFormExitButton
             // 

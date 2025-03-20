@@ -1,4 +1,5 @@
 ﻿using C969.Database;
+using C969.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,14 @@ namespace C969
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DBConnection.startConnection();
-            Application.Run(new Login());
+            // Closes Login form after successful Log In attempt without closing the program
+            using (Login loginForm = new Login())
+            {
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new MainForm());
+                }
+            }
             DBConnection.closeConnection();
         }
     }
