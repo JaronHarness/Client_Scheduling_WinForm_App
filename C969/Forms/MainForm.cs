@@ -16,5 +16,16 @@ namespace C969.Forms
         {
             InitializeComponent();
         }
+
+        private void MainAddCustomerButton_Click(object sender, EventArgs e)
+        {
+            var newAddCustomerFormInstance = new AddCustomer();
+            newAddCustomerFormInstance.Show();
+        }
+
+        private void MainExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -150,12 +150,13 @@
             this.AddCustomerCancelButton.TabIndex = 12;
             this.AddCustomerCancelButton.Text = "Cancel";
             this.AddCustomerCancelButton.UseVisualStyleBackColor = true;
+            this.AddCustomerCancelButton.Click += new System.EventHandler(this.AddCustomerCancelButton_Click);
             // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(286, 331);
             this.Controls.Add(this.AddCustomerCancelButton);
             this.Controls.Add(this.AddCustomerSubmitButton);
             this.Controls.Add(this.AddCustomerCountryTextBox);

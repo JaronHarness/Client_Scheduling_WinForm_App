@@ -16,5 +16,10 @@ namespace C969.Forms
         {
             InitializeComponent();
         }
+
+        private void AddCustomerCancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
