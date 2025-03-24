@@ -42,6 +42,7 @@ namespace C969.Forms
             string createdByInput = GlobalVariables.loggedInUser;
             string lastUpdatedByInput = GlobalVariables.loggedInUser;
 
+            // A Customer Logic
             if (!DoesCountryExist(countryInput))
             {
                 AddCountry(countryInput, createDateInput, createdByInput,lastUpdateInput,lastUpdatedByInput);
@@ -88,6 +89,49 @@ namespace C969.Forms
             }
             DBConnection.closeConnection();
 
+        }
+
+        public bool DoesCityExist(string cityInput, string countryId)
+        {
+            bool cityExist = false;
+
+            string cityQuery = "SELECT cityID FROM city WHERE city = @cityInput AND countryId = @countryInput";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(cityQuery, DBConnection.conn))
+            {
+                cmd.Parameters.AddWithValue("@city", cityInput);
+                cmd.Parameters.AddWithValue("@countryId", countryId);
+
+                int numOfCityInDB = Convert.ToInt32(cmd.ExecuteScalar());
+
+                // Country Exists
+                if (numOfCityInDB > 0)
+                {
+                    cityExist = true;
+                }
+
+
+            }
+            DBConnection.closeConnection();
+            return cityExist;
+        }
+
+        public void AddCity(string cityInput, string countryId,string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
+        {
+            string addCityQuery = "INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy)";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(addCityQuery, DBConnection.conn))
+            {
+                cmd.Parameters.AddWithValue("@city", cityInput);
+                cmd.Parameters.AddWithValue("@countryId", countryId);
+                cmd.Parameters.AddWithValue("@createDate", createDateInput);
+                cmd.Parameters.AddWithValue("@createdBy", createdByInput);
+                cmd.Parameters.AddWithValue("@lastUpdate", lastUpdateInput);
+                cmd.Parameters.AddWithValue("@lastUpdatedBy", lastUpdatedByInput);
+            }
+            DBConnection.closeConnection();
         }
     }
 }
