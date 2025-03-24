@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using C969.Database;
 using C969.Global;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace C969.Forms
 {
@@ -32,11 +33,11 @@ namespace C969.Forms
         private void AddCustomerSubmitButton_Click(object sender, EventArgs e)
         {
             // Assign user input to variables
-            string nameInput = AddCustomerNameTextBox.Text;
-            string addressInput = AddCustomerAddressTextBox.Text;
-            string phoneInput = AddCustomerPhoneTextBox.Text;
-            string cityInput = AddCustomerCityTextBox.Text;
-            string countryInput = AddCustomerCountryTextBox.Text;
+            string nameInput;
+            string addressInput;
+            string phoneInput;
+            string cityInput;
+            string countryInput;
 
             // Defaults values
             string createDateInput = DateTime.Now.ToString("D");
@@ -46,11 +47,61 @@ namespace C969.Forms
             string createdByInput = GlobalVariables.loggedInUser;
             string lastUpdatedByInput = GlobalVariables.loggedInUser;
 
-            // Add Customer Logic
+            // Valid Name Check
             if (AddCustomerNameTextBox.Text == "")
             {
                 MessageBox.Show("Customer name entry is required.");
                 return;
+            }
+            else
+            {
+                nameInput = AddCustomerNameTextBox.Text;
+            }
+            // Valid Address Check
+            if (AddCustomerAddressTextBox.Text == "")
+            {
+                MessageBox.Show("Customer address entry is required.");
+                return;
+            }
+            else
+            {
+                addressInput = AddCustomerAddressTextBox.Text;
+            }
+            // Valid Phone Check
+            string regexPattern = @"^[\d-]+$"; // Allows only numbers and hyphens
+            if (AddCustomerPhoneTextBox.Text == "")
+            {
+                MessageBox.Show("Customer phone entry is required.");
+                return;
+            }
+            else if (!Regex.IsMatch(AddCustomerPhoneTextBox.Text, regexPattern))
+            {
+                MessageBox.Show("Customer phone number can only have numbers and hyphens.");
+                return;
+            }
+            else
+            {
+                phoneInput = AddCustomerPhoneTextBox.Text;
+            }
+            // Valid City Check
+            if (AddCustomerCityTextBox.Text == "")
+            {
+                MessageBox.Show("Customer city entry is required.");
+                return;
+            }
+            else
+            {
+                cityInput = AddCustomerCityTextBox.Text;
+            }
+            // Valid Country Check
+            if (AddCustomerCountryTextBox.Text == "")
+            {
+                MessageBox.Show("Customer country entry is required.");
+                return;
+            }
+            else
+            {
+                countryInput = AddCustomerCountryTextBox.Text;
             }
 
             if (!DoesCountryExist(countryInput))
@@ -61,6 +112,8 @@ namespace C969.Forms
             {
                 AddCity(cityInput, outputCountryId,  createDateInput, createdByInput, lastUpdateInput, lastUpdatedByInput);
             }
+            AddAddress(addressInput, address2Input, outputCityId, postalCodeInput, phoneInput, createDateInput, createdByInput, lastUpdateInput, lastUpdatedByInput);
+            AddTheCustomer(nameInput, outputAddressId, createDateInput, createdByInput, lastUpdateInput, lastUpdatedByInput);
         }
 
         public bool DoesCountryExist(string countryInput)
@@ -180,7 +233,7 @@ namespace C969.Forms
             DBConnection.closeConnection();
         }
 
-        public void AddTheCustomer(string nameInput, int addressId, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
+        public void AddTheCustomer(string nameInput, int outputAddressId, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
         {
             string addCustomerQuery = "INSERT INTO customer (customerName, addressId, createDate, createdBy, lastUpdate, lastUpdatedBy) " + "VALUES (@customerName, @addressId, @createDate, @createdBy, @lastUpdate, @lastUpdatedBy)";
 
