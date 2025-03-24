@@ -47,6 +47,12 @@ namespace C969.Forms
             string lastUpdatedByInput = GlobalVariables.loggedInUser;
 
             // Add Customer Logic
+            if (AddCustomerNameTextBox.Text == "")
+            {
+                MessageBox.Show("Customer name entry is required.");
+                return;
+            }
+
             if (!DoesCountryExist(countryInput))
             {
                 AddCountry(countryInput, createDateInput, createdByInput,lastUpdateInput,lastUpdatedByInput);
