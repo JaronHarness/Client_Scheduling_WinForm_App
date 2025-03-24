@@ -141,6 +141,7 @@
             this.AddCustomerSubmitButton.TabIndex = 11;
             this.AddCustomerSubmitButton.Text = "Submit";
             this.AddCustomerSubmitButton.UseVisualStyleBackColor = true;
+            this.AddCustomerSubmitButton.Click += new System.EventHandler(this.AddCustomerSubmitButton_Click);
             // 
             // AddCustomerCancelButton
             // 

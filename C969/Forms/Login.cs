@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using C969.Global;
 
 namespace C969
 {
@@ -58,6 +59,11 @@ namespace C969
             string usernameInput = LoginFormUsernameTextBox.Text.Trim();
             string passwordInput = LoginFormPasswordTextBox.Text.Trim();
 
+            if (LoginFormUsernameTextBox.Text != null)
+            {
+                GlobalVariables.loggedInUser = LoginFormUsernameTextBox.Text;
+            }
+
             string getUserQuery = $"SELECT COUNT(1) FROM user WHERE userName = '{usernameInput}' AND password = '{passwordInput}'";
 
             try
@@ -65,7 +71,7 @@ namespace C969
                 DBConnection.startConnection();
                 using (MySqlCommand cmd = new MySqlCommand(getUserQuery, DBConnection.conn))
                 {
-                    cmd.Parameters.AddWithValue("@username", usernameInput);
+                    cmd.Parameters.AddWithValue("@userName", usernameInput);
                     cmd.Parameters.AddWithValue("@password", passwordInput);
 
                     int numOfUserInDB = Convert.ToInt32(cmd.ExecuteScalar());
