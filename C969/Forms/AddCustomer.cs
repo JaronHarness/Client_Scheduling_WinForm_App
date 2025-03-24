@@ -15,6 +15,10 @@ namespace C969.Forms
 {
     public partial class AddCustomer : Form
     {
+        int outputCountryId;
+        int outputCityId;
+        int outputAddressId;
+
         public AddCustomer()
         {
             InitializeComponent();
@@ -42,17 +46,21 @@ namespace C969.Forms
             string createdByInput = GlobalVariables.loggedInUser;
             string lastUpdatedByInput = GlobalVariables.loggedInUser;
 
-            // A Customer Logic
+            // Add Customer Logic
             if (!DoesCountryExist(countryInput))
             {
                 AddCountry(countryInput, createDateInput, createdByInput,lastUpdateInput,lastUpdatedByInput);
+            }
+            if (!DoesCityExist(cityInput, outputCountryId))
+            {
+                AddCity(cityInput, outputCountryId,  createDateInput, createdByInput, lastUpdateInput, lastUpdatedByInput);
             }
         }
 
         public bool DoesCountryExist(string countryInput)
         {
             bool countryExist = false;
-
+            
             string countryQuery = "SELECT countryID FROM country WHERE country = @countryInput";
 
             DBConnection.startConnection();
@@ -61,6 +69,9 @@ namespace C969.Forms
                 cmd.Parameters.AddWithValue("@country", countryInput);
 
                 int numOfCountryInDB = Convert.ToInt32(cmd.ExecuteScalar());
+
+                object resultObj = cmd.ExecuteScalar();
+                outputCountryId = Convert.ToInt32(resultObj);
 
                 // Country Exists
                 if (numOfCountryInDB > 0)
@@ -76,7 +87,7 @@ namespace C969.Forms
 
         public void AddCountry(string countryInput, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
         {
-            string addCountryQuery = "INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy)";
+            string addCountryQuery = "INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdatedBy)" + "OUTPUT INSERTED.countryId VALUES (@country, @createDate, @createdBy, @lastUpdate, @lastUpdatedBy)";
 
             DBConnection.startConnection();
             using (MySqlCommand cmd = new MySqlCommand(addCountryQuery, DBConnection.conn))
@@ -86,12 +97,14 @@ namespace C969.Forms
                 cmd.Parameters.AddWithValue("@createdBy", createdByInput);
                 cmd.Parameters.AddWithValue("@lastUpdate", lastUpdateInput);
                 cmd.Parameters.AddWithValue("@lastUpdatedBy", lastUpdatedByInput);
+
+                outputCountryId = (int)cmd.ExecuteScalar();
             }
             DBConnection.closeConnection();
 
         }
 
-        public bool DoesCityExist(string cityInput, string countryId)
+        public bool DoesCityExist(string cityInput, int countryId)
         {
             bool cityExist = false;
 
@@ -105,6 +118,9 @@ namespace C969.Forms
 
                 int numOfCityInDB = Convert.ToInt32(cmd.ExecuteScalar());
 
+                object resultObj = cmd.ExecuteScalar();
+                outputCityId = Convert.ToInt32(resultObj);
+
                 // City Exists
                 if (numOfCityInDB > 0)
                 {
@@ -117,52 +133,56 @@ namespace C969.Forms
             return cityExist;
         }
 
-        public void AddCity(string cityInput, string countryId,string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
+        public void AddCity(string cityInput, int outputCountryId,string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
         {
-            string addCityQuery = "INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy)";
+            string addCityQuery = "INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdatedBy)" + "OUTPUT INSERTED.cityId VALUES (@city, @countryId, @createDate, @createdBy, @lastUpdate, @lastUpdatedBy)";
 
             DBConnection.startConnection();
             using (MySqlCommand cmd = new MySqlCommand(addCityQuery, DBConnection.conn))
             {
                 cmd.Parameters.AddWithValue("@city", cityInput);
-                cmd.Parameters.AddWithValue("@countryId", countryId);
+                cmd.Parameters.AddWithValue("@countryId", outputCountryId);
                 cmd.Parameters.AddWithValue("@createDate", createDateInput);
                 cmd.Parameters.AddWithValue("@createdBy", createdByInput);
                 cmd.Parameters.AddWithValue("@lastUpdate", lastUpdateInput);
                 cmd.Parameters.AddWithValue("@lastUpdatedBy", lastUpdatedByInput);
+
+                outputCityId = (int)cmd.ExecuteScalar();
             }
             DBConnection.closeConnection();
         }
 
-        public void AddAddress(string addressInput, string address2Input, string cityId, string postalCodeInput, string phoneInput, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
+        public void AddAddress(string addressInput, string address2Input, int outputCityId, string postalCodeInput, string phoneInput, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
         {
-            string addAddressQuery = "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy)";
+            string addAddressQuery = "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy)" + "OUTPUT INSERTED.addressId VALUES (@address, @address2, @cityId, @postalCode, @phone, @createDate, @createdBy, @lastUpdate, @lastUpdateBy)";
 
             DBConnection.startConnection();
             using (MySqlCommand cmd = new MySqlCommand(addAddressQuery, DBConnection.conn))
             {
                 cmd.Parameters.AddWithValue("@address", addressInput);
                 cmd.Parameters.AddWithValue("@address2", address2Input);
-                cmd.Parameters.AddWithValue("@cityId", cityId);
+                cmd.Parameters.AddWithValue("@cityId", outputCityId);
                 cmd.Parameters.AddWithValue("@postalCode", postalCodeInput);
                 cmd.Parameters.AddWithValue("@phone", phoneInput);
                 cmd.Parameters.AddWithValue("@createDate", createDateInput);
                 cmd.Parameters.AddWithValue("@createdBy", createdByInput);
                 cmd.Parameters.AddWithValue("@lastUpdate", lastUpdateInput);
                 cmd.Parameters.AddWithValue("@lastUpdatedBy", lastUpdatedByInput);
+
+                outputAddressId = (int)cmd.ExecuteScalar();
             }
             DBConnection.closeConnection();
         }
 
-        public void AddTheCustomer(string nameInput, string addressId, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
+        public void AddTheCustomer(string nameInput, int addressId, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdatedByInput)
         {
-            string addCustomerQuery = "INSERT INTO customer (customerName, addressId, createDate, createdBy, lastUpdate, lastUpdateBy)";
+            string addCustomerQuery = "INSERT INTO customer (customerName, addressId, createDate, createdBy, lastUpdate, lastUpdatedBy) " + "VALUES (@customerName, @addressId, @createDate, @createdBy, @lastUpdate, @lastUpdatedBy)";
 
             DBConnection.startConnection();
             using (MySqlCommand cmd = new MySqlCommand(addCustomerQuery, DBConnection.conn))
             {
                 cmd.Parameters.AddWithValue("@customerName", nameInput);
-                cmd.Parameters.AddWithValue("@addressId", addressId);
+                cmd.Parameters.AddWithValue("@addressId", outputAddressId);
                 cmd.Parameters.AddWithValue("@createDate", createDateInput);
                 cmd.Parameters.AddWithValue("@createdBy", createdByInput);
                 cmd.Parameters.AddWithValue("@lastUpdate", lastUpdateInput);
