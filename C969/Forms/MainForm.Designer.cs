@@ -28,22 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MainCustomerDGV = new System.Windows.Forms.DataGridView();
             this.MainAddCustomerButton = new System.Windows.Forms.Button();
             this.MainEditCustomerButton = new System.Windows.Forms.Button();
             this.MainDeleteCustomerButton = new System.Windows.Forms.Button();
             this.MainCustomersLabel = new System.Windows.Forms.Label();
             this.MainExitButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainCustomerDGV)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // MainCustomerDGV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(130, 39);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(496, 158);
-            this.dataGridView1.TabIndex = 0;
+            this.MainCustomerDGV.AllowUserToAddRows = false;
+            this.MainCustomerDGV.AllowUserToDeleteRows = false;
+            this.MainCustomerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MainCustomerDGV.Location = new System.Drawing.Point(130, 39);
+            this.MainCustomerDGV.MultiSelect = false;
+            this.MainCustomerDGV.Name = "MainCustomerDGV";
+            this.MainCustomerDGV.ReadOnly = true;
+            this.MainCustomerDGV.Size = new System.Drawing.Size(496, 158);
+            this.MainCustomerDGV.TabIndex = 0;
+            this.MainCustomerDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.myBindingComplete);
             // 
             // MainAddCustomerButton
             // 
@@ -102,10 +107,10 @@
             this.Controls.Add(this.MainDeleteCustomerButton);
             this.Controls.Add(this.MainEditCustomerButton);
             this.Controls.Add(this.MainAddCustomerButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.MainCustomerDGV);
             this.Name = "MainForm";
             this.Text = "Main";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainCustomerDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,7 +118,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView MainCustomerDGV;
         private System.Windows.Forms.Button MainAddCustomerButton;
         private System.Windows.Forms.Button MainEditCustomerButton;
         private System.Windows.Forms.Button MainDeleteCustomerButton;
