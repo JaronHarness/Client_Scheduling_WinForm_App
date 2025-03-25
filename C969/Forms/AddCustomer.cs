@@ -11,6 +11,7 @@ using C969.Database;
 using C969.Global;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
+using C969.Forms;
 
 namespace C969.Forms
 {
@@ -44,6 +45,7 @@ namespace C969.Forms
             string lastUpdateInput = createDateInput;
             string postalCodeInput = "00000";
             string address2Input = "N/A";
+            int activeInput = 1;
             string createdByInput = GlobalVariables.loggedInUser;
             string lastUpdateByInput = GlobalVariables.loggedInUser;
 
@@ -113,7 +115,8 @@ namespace C969.Forms
                 AddCity(cityInput, outputCountryId,  createDateInput, createdByInput, lastUpdateInput, lastUpdateByInput);
             }
             AddAddress(addressInput, address2Input, outputCityId, postalCodeInput, phoneInput, createDateInput, createdByInput, lastUpdateInput, lastUpdateByInput);
-            AddTheCustomer(nameInput, outputAddressId, createDateInput, createdByInput, lastUpdateInput, lastUpdateByInput);
+            AddTheCustomer(nameInput, outputAddressId, activeInput, createDateInput, createdByInput, lastUpdateInput, lastUpdateByInput);
+            Close();
         }
 
         public bool DoesCountryExist(string countryInput)
@@ -233,19 +236,30 @@ namespace C969.Forms
             DBConnection.closeConnection();
         }
 
-        public void AddTheCustomer(string nameInput, int outputAddressId, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdateByInput)
+        public void AddTheCustomer(string nameInput, int outputAddressId, int activeInput, string createDateInput, string createdByInput, string lastUpdateInput, string lastUpdateByInput)
         {
-            string addCustomerQuery = "INSERT INTO customer (customerName, addressId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@customerName, @addressId, @createDate, @createdBy, @lastUpdate, @lastUpdateBy)";
+            string addCustomerQuery = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@customerName, @addressId, @active, @createDate, @createdBy, @lastUpdate, @lastUpdateBy)";
 
             DBConnection.startConnection();
             using (MySqlCommand cmd = new MySqlCommand(addCustomerQuery, DBConnection.conn))
             {
                 cmd.Parameters.AddWithValue("@customerName", nameInput);
                 cmd.Parameters.AddWithValue("@addressId", outputAddressId);
+                cmd.Parameters.AddWithValue("@active", activeInput);
                 cmd.Parameters.AddWithValue("@createDate", createDateInput);
                 cmd.Parameters.AddWithValue("@createdBy", createdByInput);
                 cmd.Parameters.AddWithValue("@lastUpdate", lastUpdateInput);
                 cmd.Parameters.AddWithValue("@lastUpdateBy", lastUpdateByInput);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Customer added successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Customer not added.");
+                }
             }
             DBConnection.closeConnection();
         }
