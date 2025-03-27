@@ -116,7 +116,7 @@ namespace C969.Forms
             }
             AddAddress(addressInput, address2Input, outputCityId, postalCodeInput, phoneInput, createDateInput, createdByInput, lastUpdateInput, lastUpdateByInput);
             AddTheCustomer(nameInput, outputAddressId, activeInput, createDateInput, createdByInput, lastUpdateInput, lastUpdateByInput);
-            Close();
+            this.Close();
         }
 
         public bool DoesCountryExist(string countryInput)

@@ -23,8 +23,14 @@ namespace C969.Forms
 
         private void MainAddCustomerButton_Click(object sender, EventArgs e)
         {
-            var newAddCustomerFormInstance = new AddCustomer();
-            newAddCustomerFormInstance.Show();
+            AddCustomer newAddCustomerFormInstance = new AddCustomer();
+            newAddCustomerFormInstance.FormClosed += newAddCustomerFormInstance_FormClosed;
+            newAddCustomerFormInstance.ShowDialog();
+        }
+
+        private void newAddCustomerFormInstance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoadCustomerDGV();
         }
 
         private void MainExitButton_Click(object sender, EventArgs e)
