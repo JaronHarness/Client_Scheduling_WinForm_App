@@ -141,6 +141,7 @@
             this.EditCustomerSubmitButton.TabIndex = 11;
             this.EditCustomerSubmitButton.Text = "Submit";
             this.EditCustomerSubmitButton.UseVisualStyleBackColor = true;
+            this.EditCustomerSubmitButton.Click += new System.EventHandler(this.EditCustomerSubmitButton_Click);
             // 
             // EditCustomerCancelButton
             // 
@@ -150,6 +151,7 @@
             this.EditCustomerCancelButton.TabIndex = 12;
             this.EditCustomerCancelButton.Text = "Cancel";
             this.EditCustomerCancelButton.UseVisualStyleBackColor = true;
+            this.EditCustomerCancelButton.Click += new System.EventHandler(this.EditCustomerCancelButton_Click);
             // 
             // EditCustomer
             // 

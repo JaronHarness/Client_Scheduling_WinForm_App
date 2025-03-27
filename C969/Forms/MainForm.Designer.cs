@@ -68,6 +68,7 @@
             this.MainEditCustomerButton.TabIndex = 2;
             this.MainEditCustomerButton.Text = "Edit";
             this.MainEditCustomerButton.UseVisualStyleBackColor = true;
+            this.MainEditCustomerButton.Click += new System.EventHandler(this.MainEditCustomerButton_Click);
             // 
             // MainDeleteCustomerButton
             // 

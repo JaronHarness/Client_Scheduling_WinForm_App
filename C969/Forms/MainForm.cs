@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using C969.Database;
 using System.Data.SqlClient;
+using C969.Forms;
 
 namespace C969.Forms
 {
@@ -24,11 +25,11 @@ namespace C969.Forms
         private void MainAddCustomerButton_Click(object sender, EventArgs e)
         {
             AddCustomer newAddCustomerFormInstance = new AddCustomer();
-            newAddCustomerFormInstance.FormClosed += newAddCustomerFormInstance_FormClosed;
+            newAddCustomerFormInstance.FormClosed += newCustomerFormInstance_FormClosed;
             newAddCustomerFormInstance.ShowDialog();
         }
 
-        private void newAddCustomerFormInstance_FormClosed(object sender, FormClosedEventArgs e)
+        private void newCustomerFormInstance_FormClosed(object sender, FormClosedEventArgs e)
         {
             LoadCustomerDGV();
         }
@@ -42,8 +43,6 @@ namespace C969.Forms
         {
             MainCustomerDGV.ClearSelection();
         }
-
-        // Methods
 
         private void LoadCustomerDGV()
         {
@@ -90,6 +89,32 @@ namespace C969.Forms
 
                     LoadCustomerDGV();
                 }
+            }
+        }
+
+        private void MainEditCustomerButton_Click(object sender, EventArgs e)
+        {
+            if (RetrieveCustomerIdFromDGV() != -1) 
+            {
+                int customerId = RetrieveCustomerIdFromDGV();
+
+                EditCustomer newEditCustomerFormInstance = new EditCustomer(customerId);
+                newEditCustomerFormInstance.FormClosed += newCustomerFormInstance_FormClosed;
+                newEditCustomerFormInstance.ShowDialog();
+            }
+        }
+
+        private int RetrieveCustomerIdFromDGV()
+        {
+            if (MainCustomerDGV.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedCustomerRow = MainCustomerDGV.SelectedRows[0];
+                return Convert.ToInt32(selectedCustomerRow.Cells["customerId"].Value);
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer to edit.");
+                return -1;
             }
         }
     }
