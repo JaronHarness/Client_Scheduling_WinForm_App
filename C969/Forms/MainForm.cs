@@ -47,7 +47,7 @@ namespace C969.Forms
 
         private void LoadCustomerDGV()
         {
-            string customerDGVQuery = "SELECT customer.customerName, address.address, address.phone, city.city, country.country FROM customer INNER JOIN address ON customer.addressId = address.addressId INNER JOIN city ON address.cityId = city.cityId INNER JOIN country ON city.countryId = country.countryId";
+            string customerDGVQuery = "SELECT customer.customerId, customer.customerName, address.address, address.phone, city.city, country.country FROM customer INNER JOIN address ON customer.addressId = address.addressId INNER JOIN city ON address.cityId = city.cityId INNER JOIN country ON city.countryId = country.countryId";
 
             DBConnection.startConnection();
 
@@ -57,6 +57,40 @@ namespace C969.Forms
             MainCustomerDGV.DataSource = customerDT;
 
             DBConnection.closeConnection();
+        }
+
+        private void MainDeleteCustomerButton_Click(object sender, EventArgs e)
+        {
+            if (MainCustomerDGV.SelectedRows.Count > 0)
+            {
+                // Retrieve the selected customer's Id
+                int customerId = Convert.ToInt32(MainCustomerDGV.SelectedRows[0].Cells["customerId"].Value);
+
+                DialogResult deletionResult = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Customer Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (deletionResult == DialogResult.Yes)
+                {
+                    string deleteAppointmentQuery = "DELETE FROM appointment WHERE customerId = @customerId";   
+                    string deleteCustomerQuery = "DELETE FROM customer WHERE customerId = @customerId";
+
+                    DBConnection.startConnection();
+                    using (MySqlCommand cmd = new MySqlCommand(deleteAppointmentQuery, DBConnection.conn))
+                    {
+                        cmd.Parameters.AddWithValue("@customerId", customerId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    using (MySqlCommand cmd = new MySqlCommand(deleteCustomerQuery, DBConnection.conn))
+                    {
+                        cmd.Parameters.AddWithValue("@customerId", customerId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    DBConnection.closeConnection();
+
+                    MessageBox.Show("Customer was successfully deleted.");
+
+                    LoadCustomerDGV();
+                }
+            }
         }
     }
 }

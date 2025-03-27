@@ -77,6 +77,7 @@
             this.MainDeleteCustomerButton.TabIndex = 3;
             this.MainDeleteCustomerButton.Text = "Delete";
             this.MainDeleteCustomerButton.UseVisualStyleBackColor = true;
+            this.MainDeleteCustomerButton.Click += new System.EventHandler(this.MainDeleteCustomerButton_Click);
             // 
             // MainCustomersLabel
             // 
