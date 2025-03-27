@@ -120,7 +120,7 @@ namespace C969.Forms
                     // Update Customer
                     using (MySqlCommand cmd = new MySqlCommand(updateCustomerQuery, DBConnection.conn, transaction))
                     {
-                        cmd.Parameters.AddWithValue("@customerName", EditCustomerNameTextBox.Text);
+                        cmd.Parameters.AddWithValue("@customerName", EditCustomerNameTextBox.Text.Trim());
                         cmd.Parameters.AddWithValue("@customerId", customerId);
                         cmd.ExecuteNonQuery();
 ;                    }
@@ -128,8 +128,8 @@ namespace C969.Forms
                     // Update Address
                     using (MySqlCommand cmd = new MySqlCommand(updateAddressQuery, DBConnection.conn, transaction))
                     {
-                        cmd.Parameters.AddWithValue("@address", EditCustomerAddressTextBox.Text);
-                        cmd.Parameters.AddWithValue("@phone", EditCustomerPhoneTextBox.Text);
+                        cmd.Parameters.AddWithValue("@address", EditCustomerAddressTextBox.Text.Trim());
+                        cmd.Parameters.AddWithValue("@phone", EditCustomerPhoneTextBox.Text.Trim());
                         cmd.Parameters.AddWithValue("@customerId", customerId);
                         cmd.ExecuteNonQuery();
                     }
@@ -137,7 +137,7 @@ namespace C969.Forms
                     // Update City
                     using (MySqlCommand cmd = new MySqlCommand(updateCityQuery, DBConnection.conn, transaction))
                     {
-                        cmd.Parameters.AddWithValue("@city", EditCustomerCityTextBox.Text);
+                        cmd.Parameters.AddWithValue("@city", EditCustomerCityTextBox.Text.Trim());
                         cmd.Parameters.AddWithValue("@customerId", customerId);
                         cmd.ExecuteNonQuery();
                     }
@@ -145,7 +145,7 @@ namespace C969.Forms
                     // Update Country
                     using (MySqlCommand cmd = new MySqlCommand(updateCountryQuery, DBConnection.conn, transaction))
                     {
-                        cmd.Parameters.AddWithValue("@country", EditCustomerCountryTextBox.Text);
+                        cmd.Parameters.AddWithValue("@country", EditCustomerCountryTextBox.Text.Trim());
                         cmd.Parameters.AddWithValue("@customerId", customerId);
                         cmd.ExecuteNonQuery();
                     }

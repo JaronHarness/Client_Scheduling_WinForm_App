@@ -57,7 +57,7 @@ namespace C969.Forms
             }
             else
             {
-                nameInput = AddCustomerNameTextBox.Text;
+                nameInput = AddCustomerNameTextBox.Text.Trim();
             }
             // Valid Address Check
             if (AddCustomerAddressTextBox.Text == "")
@@ -67,7 +67,7 @@ namespace C969.Forms
             }
             else
             {
-                addressInput = AddCustomerAddressTextBox.Text;
+                addressInput = AddCustomerAddressTextBox.Text.Trim();
             }
             // Valid Phone Check
             string regexPattern = @"^[\d-]+$"; // Allows only numbers and hyphens
@@ -83,7 +83,7 @@ namespace C969.Forms
             }
             else
             {
-                phoneInput = AddCustomerPhoneTextBox.Text;
+                phoneInput = AddCustomerPhoneTextBox.Text.Trim();
             }
             // Valid City Check
             if (AddCustomerCityTextBox.Text == "")
@@ -93,7 +93,7 @@ namespace C969.Forms
             }
             else
             {
-                cityInput = AddCustomerCityTextBox.Text;
+                cityInput = AddCustomerCityTextBox.Text.Trim();
             }
             // Valid Country Check
             if (AddCustomerCountryTextBox.Text == "")
@@ -103,7 +103,7 @@ namespace C969.Forms
             }
             else
             {
-                countryInput = AddCustomerCountryTextBox.Text;
+                countryInput = AddCustomerCountryTextBox.Text.Trim();
             }
 
             if (!DoesCountryExist(countryInput))
