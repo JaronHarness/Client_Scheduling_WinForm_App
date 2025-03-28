@@ -196,7 +196,40 @@ namespace C969.Forms
             }
             DBConnection.closeConnection();
 
-            AddTheAppointment(GlobalVariables.LoggedInUserId);
+            if (BusinessHoursValidation(start, end))
+            {
+                AddTheAppointment(GlobalVariables.LoggedInUserId);
+            }
+        }
+
+        private DateTime ConvertDateTimeToEST(DateTime localDateTime)
+        {
+            TimeZoneInfo easternStandardTime = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            return TimeZoneInfo.ConvertTime(localDateTime, TimeZoneInfo.Local, easternStandardTime);
+        }
+
+        private bool BusinessHoursValidation(DateTime localStart, DateTime localEnd)
+        {
+            DateTime startEST = ConvertDateTimeToEST(localStart);
+            DateTime endEST = ConvertDateTimeToEST(localEnd);
+
+            TimeSpan businessStart = new TimeSpan(9,0,0);
+            TimeSpan businessEnd = new TimeSpan(17,0,0);
+
+            // Start and End time validation
+            if (startEST.TimeOfDay < businessStart || endEST.TimeOfDay < businessEnd)
+            {
+                MessageBox.Show("Appointment time must be between 9:00 a.m. and 5:00 p.m. EST.");
+                return false;
+            }
+
+            // Weekdays validation
+            if (startEST.DayOfWeek == DayOfWeek.Saturday || startEST.DayOfWeek == DayOfWeek.Sunday || endEST.DayOfWeek == DayOfWeek.Saturday || endEST.DayOfWeek == DayOfWeek.Sunday)
+            {
+                MessageBox.Show("Appointments can only be scheduled Monday - Friday.");
+                return false;
+            }
+            return true;
         }
     }
 }

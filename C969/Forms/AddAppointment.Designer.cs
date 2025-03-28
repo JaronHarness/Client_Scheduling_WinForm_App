@@ -104,6 +104,8 @@
             // 
             // AddAppointmentStartDateTimePicker
             // 
+            this.AddAppointmentStartDateTimePicker.CustomFormat = "\"MM/dd/yyy hh:mm tt\"";
+            this.AddAppointmentStartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.AddAppointmentStartDateTimePicker.Location = new System.Drawing.Point(80, 140);
             this.AddAppointmentStartDateTimePicker.Name = "AddAppointmentStartDateTimePicker";
             this.AddAppointmentStartDateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -111,6 +113,8 @@
             // 
             // AddAppointmentEndDateTimePicker
             // 
+            this.AddAppointmentEndDateTimePicker.CustomFormat = "\"MM/dd/yyy hh:mm tt\"";
+            this.AddAppointmentEndDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.AddAppointmentEndDateTimePicker.Location = new System.Drawing.Point(80, 190);
             this.AddAppointmentEndDateTimePicker.Name = "AddAppointmentEndDateTimePicker";
             this.AddAppointmentEndDateTimePicker.Size = new System.Drawing.Size(198, 20);

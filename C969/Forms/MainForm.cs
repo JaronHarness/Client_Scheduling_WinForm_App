@@ -33,7 +33,7 @@ namespace C969.Forms
         private void MainAddAppointmentButton_Click(object sender, EventArgs e)
         {
             AddAppointment newAddAppointmentFormInstance = new AddAppointment();
-            newAddAppointmentFormInstance.FormClosed += newCustomerFormInstance_FormClosed;
+            newAddAppointmentFormInstance.FormClosed += newAppointmentFormInstance_FormClosed;
             newAddAppointmentFormInstance.ShowDialog();
         }
 
