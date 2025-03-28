@@ -98,6 +98,23 @@ namespace C969
                 GlobalVariables.loggedInUser = LoginFormUsernameTextBox.Text;
             }
 
+            string userIdQuery = "SELECT userId FROM user WHERE userName = @userName AND password = @password";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(userIdQuery, DBConnection.conn))
+            {
+                cmd.Parameters.AddWithValue("@userName",usernameInput);
+                cmd.Parameters.AddWithValue("@password", passwordInput);
+
+                object userIdResult = cmd.ExecuteScalar();
+
+                if (userIdResult != null)
+                {
+                    GlobalVariables.LoggedInUserId = Convert.ToInt32(userIdResult);
+                }
+            }
+            DBConnection.closeConnection();
+
             string getUserQuery = $"SELECT COUNT(1) FROM user WHERE userName = '{usernameInput}' AND password = '{passwordInput}'";
 
             try

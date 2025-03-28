@@ -10,5 +10,6 @@ namespace C969.Global
     {
         // Global Variables
         public static string loggedInUser = "Admin";
+        public static int LoggedInUserId {  get; set; }
     }
 }

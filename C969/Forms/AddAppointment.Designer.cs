@@ -32,7 +32,7 @@
             this.AddAppointmentTypeLabel = new System.Windows.Forms.Label();
             this.AddAppointmentTypeTextBox = new System.Windows.Forms.TextBox();
             this.AddAppointmentCustomerLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.AddAppointmentCustomerComboBox = new System.Windows.Forms.ComboBox();
             this.AddAppointmentStartLabel = new System.Windows.Forms.Label();
             this.AddAppointmentEndLabel = new System.Windows.Forms.Label();
             this.AddAppointmentStartDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -76,13 +76,13 @@
             this.AddAppointmentCustomerLabel.TabIndex = 3;
             this.AddAppointmentCustomerLabel.Text = "Customer";
             // 
-            // comboBox1
+            // AddAppointmentCustomerComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(80, 96);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(198, 21);
-            this.comboBox1.TabIndex = 4;
+            this.AddAppointmentCustomerComboBox.FormattingEnabled = true;
+            this.AddAppointmentCustomerComboBox.Location = new System.Drawing.Point(80, 96);
+            this.AddAppointmentCustomerComboBox.Name = "AddAppointmentCustomerComboBox";
+            this.AddAppointmentCustomerComboBox.Size = new System.Drawing.Size(198, 21);
+            this.AddAppointmentCustomerComboBox.TabIndex = 4;
             // 
             // AddAppointmentStartLabel
             // 
@@ -147,7 +147,7 @@
             this.Controls.Add(this.AddAppointmentStartDateTimePicker);
             this.Controls.Add(this.AddAppointmentEndLabel);
             this.Controls.Add(this.AddAppointmentStartLabel);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.AddAppointmentCustomerComboBox);
             this.Controls.Add(this.AddAppointmentCustomerLabel);
             this.Controls.Add(this.AddAppointmentTypeTextBox);
             this.Controls.Add(this.AddAppointmentTypeLabel);
@@ -165,7 +165,7 @@
         private System.Windows.Forms.Label AddAppointmentTypeLabel;
         private System.Windows.Forms.TextBox AddAppointmentTypeTextBox;
         private System.Windows.Forms.Label AddAppointmentCustomerLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox AddAppointmentCustomerComboBox;
         private System.Windows.Forms.Label AddAppointmentStartLabel;
         private System.Windows.Forms.Label AddAppointmentEndLabel;
         private System.Windows.Forms.DateTimePicker AddAppointmentStartDateTimePicker;
