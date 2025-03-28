@@ -59,6 +59,30 @@ namespace C969
             string usernameInput = LoginFormUsernameTextBox.Text.Trim();
             string passwordInput = LoginFormPasswordTextBox.Text.Trim();
 
+            // Username not entered
+            if (LoginFormUsernameTextBox.Text == "" && CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("en"))
+            {
+                MessageBox.Show("Please enter a username.");
+                return;
+            }
+            if (LoginFormUsernameTextBox.Text == "" && CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("es"))
+            {
+                MessageBox.Show("Por favor, introduzca un nombre de usuario.");
+                return;
+            }
+
+            // Password not entered
+            if (LoginFormPasswordTextBox.Text == "" && CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("en"))
+            {
+                MessageBox.Show("Please enter a password.");
+                return;
+            }
+            if (LoginFormPasswordTextBox.Text == "" && CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("es"))
+            {
+                MessageBox.Show("Por favor, introduzca una contraseña.");
+                return;
+            }
+
             if (LoginFormUsernameTextBox.Text != null)
             {
                 GlobalVariables.loggedInUser = LoginFormUsernameTextBox.Text;
@@ -83,7 +107,16 @@ namespace C969
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password.");
+                        if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("en"))
+                        {
+                            MessageBox.Show("The username and password did not match.");
+                            return;
+                        }
+                        if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("es"))
+                        {
+                            MessageBox.Show("El nombre de usuario y la contraseña no coincidían");
+                            return;
+                        }
                     }
                 }
             }
