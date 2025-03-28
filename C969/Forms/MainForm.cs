@@ -99,7 +99,7 @@ namespace C969.Forms
 
         private void LoadCustomerDGV()
         {
-            string customerDGVQuery = "SELECT customer.customerId, customer.customerName, address.address, address.phone, city.city, country.country FROM customer INNER JOIN address ON customer.addressId = address.addressId INNER JOIN city ON address.cityId = city.cityId INNER JOIN country ON city.countryId = country.countryId";
+            string customerDGVQuery = "SELECT customerId, customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy FROM customer";
 
             DBConnection.startConnection();
 
@@ -109,11 +109,13 @@ namespace C969.Forms
             MainCustomerDGV.DataSource = customerDT;
 
             DBConnection.closeConnection();
+
+            FormatCustomerDGV();
         }
 
         private void LoadAppointmentDGV()
         {
-            string appointmentDGVQuery = "SELECT appointmentId, customerId, title, description, location, contact, type, url, start, end, createDate, createdBy,lastUpdate, lastUpdateBy FROM appointment";
+            string appointmentDGVQuery = "SELECT appointmentId, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy,lastUpdate, lastUpdateBy FROM appointment";
 
             DBConnection.startConnection();
 
@@ -123,6 +125,39 @@ namespace C969.Forms
             MainAppointmentDGV.DataSource = appointmentDT;
 
             DBConnection.closeConnection();
+
+            FormatAppointmentDGV();
+        }
+
+        private void FormatCustomerDGV()
+        {
+            MainCustomerDGV.Columns["customerId"].HeaderText = "Customer ID";
+            MainCustomerDGV.Columns["customerName"].HeaderText = "Customer Name";
+            MainCustomerDGV.Columns["addressId"].HeaderText = "Address ID";
+            MainCustomerDGV.Columns["active"].HeaderText = "Active";
+            MainCustomerDGV.Columns["createDate"].HeaderText = "Create Date";
+            MainCustomerDGV.Columns["createdBy"].HeaderText = "Created By";
+            MainCustomerDGV.Columns["lastUpdate"].HeaderText = "Last Update";
+            MainCustomerDGV.Columns["lastUpdateBy"].HeaderText = "Last Update By";
+        }
+
+        private void FormatAppointmentDGV()
+        {
+            MainAppointmentDGV.Columns["appointmentId"].HeaderText = "Appointment ID";
+            MainAppointmentDGV.Columns["customerId"].HeaderText = "Customer ID";
+            MainAppointmentDGV.Columns["userId"].HeaderText = "User ID";
+            MainAppointmentDGV.Columns["title"].HeaderText = "Title";
+            MainAppointmentDGV.Columns["description"].HeaderText = "Description";
+            MainAppointmentDGV.Columns["location"].HeaderText = "Location";
+            MainAppointmentDGV.Columns["contact"].HeaderText = "Contact";
+            MainAppointmentDGV.Columns["type"].HeaderText = "Type";
+            MainAppointmentDGV.Columns["url"].HeaderText = "URL";
+            MainAppointmentDGV.Columns["start"].HeaderText = "Start";
+            MainAppointmentDGV.Columns["end"].HeaderText = "End";
+            MainAppointmentDGV.Columns["createDate"].HeaderText = "Create Date";
+            MainAppointmentDGV.Columns["createdBy"].HeaderText = "Created By";
+            MainAppointmentDGV.Columns["lastUpdate"].HeaderText = "Last Update";
+            MainAppointmentDGV.Columns["lastUpdateBy"].HeaderText = "Last Update By";
         }
 
         private void newCustomerFormInstance_FormClosed(object sender, FormClosedEventArgs e)

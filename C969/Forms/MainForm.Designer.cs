@@ -52,6 +52,7 @@
             this.MainCustomerDGV.MultiSelect = false;
             this.MainCustomerDGV.Name = "MainCustomerDGV";
             this.MainCustomerDGV.ReadOnly = true;
+            this.MainCustomerDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MainCustomerDGV.Size = new System.Drawing.Size(643, 158);
             this.MainCustomerDGV.TabIndex = 0;
             this.MainCustomerDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.myBindingComplete);
@@ -114,6 +115,7 @@
             this.MainAppointmentDGV.MultiSelect = false;
             this.MainAppointmentDGV.Name = "MainAppointmentDGV";
             this.MainAppointmentDGV.ReadOnly = true;
+            this.MainAppointmentDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MainAppointmentDGV.Size = new System.Drawing.Size(643, 158);
             this.MainAppointmentDGV.TabIndex = 6;
             this.MainAppointmentDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.myBindingComplete2);
