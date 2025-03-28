@@ -16,5 +16,15 @@ namespace C969.Forms
         {
             InitializeComponent();
         }
+
+        private void AddAppointmentSubmitButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddAppointmentCancelButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
