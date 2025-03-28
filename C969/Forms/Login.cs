@@ -24,7 +24,17 @@ namespace C969
         {
             InitializeComponent();
             LanguageSelect();
-            //Test
+            AdjustUsernameTextBoxLocation();
+        }
+
+        private void AdjustUsernameTextBoxLocation()
+        {
+            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Contains("es"))
+            {
+                LoginFormUsernameLabel.Location = new System.Drawing.Point(LoginFormUsernameLabel.Location.X - 30, LoginFormUsernameLabel.Location.Y);
+
+                LoginFormPasswordLabel.Location = new System.Drawing.Point(LoginFormPasswordLabel.Location.X - 30, LoginFormPasswordLabel.Location.Y);
+            }
         }
 
         private void LanguageSelect()
