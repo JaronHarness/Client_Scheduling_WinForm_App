@@ -20,6 +20,7 @@ namespace C969.Forms
         {
             InitializeComponent();
             LoadCustomerDGV();
+            LoadAppointmentDGV();
         }
 
         private void MainAddCustomerButton_Click(object sender, EventArgs e)
@@ -29,33 +30,11 @@ namespace C969.Forms
             newAddCustomerFormInstance.ShowDialog();
         }
 
-        private void newCustomerFormInstance_FormClosed(object sender, FormClosedEventArgs e)
+        private void MainAddAppointmentButton_Click(object sender, EventArgs e)
         {
-            LoadCustomerDGV();
-        }
-
-        private void MainExitButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void myBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            MainCustomerDGV.ClearSelection();
-        }
-
-        private void LoadCustomerDGV()
-        {
-            string customerDGVQuery = "SELECT customer.customerId, customer.customerName, address.address, address.phone, city.city, country.country FROM customer INNER JOIN address ON customer.addressId = address.addressId INNER JOIN city ON address.cityId = city.cityId INNER JOIN country ON city.countryId = country.countryId";
-
-            DBConnection.startConnection();
-
-            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(customerDGVQuery,DBConnection.conn);
-            DataTable customerDT = new DataTable();
-            sqlDataAdapter.Fill(customerDT);
-            MainCustomerDGV.DataSource = customerDT;
-
-            DBConnection.closeConnection();
+            AddAppointment newAddAppointmentFormInstance = new AddAppointment();
+            newAddAppointmentFormInstance.FormClosed += newCustomerFormInstance_FormClosed;
+            newAddAppointmentFormInstance.ShowDialog();
         }
 
         private void MainDeleteCustomerButton_Click(object sender, EventArgs e)
@@ -116,6 +95,59 @@ namespace C969.Forms
                 MessageBox.Show("Please select a customer to edit.");
                 return -1;
             }
+        }
+
+        private void LoadCustomerDGV()
+        {
+            string customerDGVQuery = "SELECT customer.customerId, customer.customerName, address.address, address.phone, city.city, country.country FROM customer INNER JOIN address ON customer.addressId = address.addressId INNER JOIN city ON address.cityId = city.cityId INNER JOIN country ON city.countryId = country.countryId";
+
+            DBConnection.startConnection();
+
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(customerDGVQuery, DBConnection.conn);
+            DataTable customerDT = new DataTable();
+            sqlDataAdapter.Fill(customerDT);
+            MainCustomerDGV.DataSource = customerDT;
+
+            DBConnection.closeConnection();
+        }
+
+        private void LoadAppointmentDGV()
+        {
+            string appointmentDGVQuery = "SELECT appointmentId, customerId, title, description, location, contact, type, url, start, end, createDate, createdBy,lastUpdate, lastUpdateBy FROM appointment";
+
+            DBConnection.startConnection();
+
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(appointmentDGVQuery, DBConnection.conn);
+            DataTable appointmentDT = new DataTable();
+            sqlDataAdapter.Fill(appointmentDT);
+            MainAppointmentDGV.DataSource = appointmentDT;
+
+            DBConnection.closeConnection();
+        }
+
+        private void newCustomerFormInstance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoadCustomerDGV();
+        }
+
+        private void newAppointmentFormInstance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoadAppointmentDGV();
+        }
+
+        private void myBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            MainCustomerDGV.ClearSelection();
+        }
+
+        private void myBindingComplete2(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            MainAppointmentDGV.ClearSelection();
+        }
+
+        private void MainExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
