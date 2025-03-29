@@ -147,6 +147,7 @@
             this.MainDeleteAppointmentButton.TabIndex = 9;
             this.MainDeleteAppointmentButton.Text = "Delete";
             this.MainDeleteAppointmentButton.UseVisualStyleBackColor = true;
+            this.MainDeleteAppointmentButton.Click += new System.EventHandler(this.MainDeleteAppointmentButton_Click);
             // 
             // MainAppointmentsLabel
             // 

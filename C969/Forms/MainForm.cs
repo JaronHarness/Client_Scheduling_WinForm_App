@@ -71,6 +71,21 @@ namespace C969.Forms
             }
         }
 
+        private void MainDeleteAppointmentButton_Click(object sender, EventArgs e)
+        {
+            int appointmentId = RetrieveAppointmentIdFromDGV();
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete the selected appointment?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                DeleteAppointment(appointmentId);
+                LoadAppointmentDGV();
+
+                MessageBox.Show("Appointed deleted successfully.");
+            }
+        }
+
         private void MainEditCustomerButton_Click(object sender, EventArgs e)
         {
             if (RetrieveCustomerIdFromDGV() != -1) 
@@ -95,6 +110,33 @@ namespace C969.Forms
                 MessageBox.Show("Please select a customer to edit.");
                 return -1;
             }
+        }
+
+        private int RetrieveAppointmentIdFromDGV()
+        {
+            if (MainAppointmentDGV.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedAppointmentRow = MainAppointmentDGV.SelectedRows[0];
+                return Convert.ToInt32(selectedAppointmentRow.Cells["appointmentId"].Value);
+            }
+            else
+            {
+                MessageBox.Show("Please select appointment to delete.");
+                return -1;
+            }
+        }
+
+        private void DeleteAppointment(int appointmentId)
+        {
+            string deleteAppointmentQuery = "DELETE FROM appointment WHERE appointmentId = @appointmentId";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(deleteAppointmentQuery, DBConnection.conn))
+            {
+                cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                cmd.ExecuteNonQuery();
+            }
+            DBConnection.closeConnection();
         }
 
         private void LoadCustomerDGV()
@@ -184,5 +226,6 @@ namespace C969.Forms
         {
             Application.Exit();
         }
+
     }
 }
