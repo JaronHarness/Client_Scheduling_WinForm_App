@@ -59,6 +59,36 @@ namespace C969
             }
         }
 
+        private void AppointmentAlertsCheck(int userId)
+        {
+            string alertQuery = "SELECT appointmentId, start FROM appointment WHERE userId = @userId AND start >= NOW() AND start <= DATE_ADD(NOW(), INTERVAL 15 MINUTE)";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(alertQuery, DBConnection.conn))
+            {
+                cmd.Parameters.AddWithValue("@userId", userId);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int appointmentId = Convert.ToInt32(reader["appointmentId"]);
+                            DateTime appointmentStart = Convert.ToDateTime(reader["start"]);
+
+                            MessageBox.Show($"You have an upcoming appointment:\n" +
+                                $"Appointment ID: {appointmentId}\n" +
+                                $"Start Time: {appointmentStart}", 
+                                "Upcoming Appointment Alert",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+        }
+
         private void LoginFormExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -114,6 +144,8 @@ namespace C969
                 }
             }
             DBConnection.closeConnection();
+
+            AppointmentAlertsCheck(GlobalVariables.LoggedInUserId);
 
             string getUserQuery = $"SELECT COUNT(1) FROM user WHERE userName = '{usernameInput}' AND password = '{passwordInput}'";
 
