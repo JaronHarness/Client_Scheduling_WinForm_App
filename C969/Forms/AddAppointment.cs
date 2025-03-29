@@ -160,11 +160,11 @@ namespace C969.Forms
                 return;
             }
 
-            // Start before End
-            DateTime start = AddAppointmentStartDateTimePicker.Value;
-            DateTime end = AddAppointmentEndDateTimePicker.Value;
+            DateTime localStart = AddAppointmentStartDateTimePicker.Value;
+            DateTime localEnd = AddAppointmentEndDateTimePicker.Value;
 
-            if (start >= end)
+            // Validate Start before End DateTime
+            if (localStart >= localEnd)
             {
                 MessageBox.Show("Appointment start time must be before the end time.");
                 return;
@@ -177,8 +177,8 @@ namespace C969.Forms
             using (MySqlCommand cmd = new MySqlCommand(overlapAppointmentQuery, DBConnection.conn))
             {
                 cmd.Parameters.AddWithValue("@userId",userId);
-                cmd.Parameters.AddWithValue("@start", start);
-                cmd.Parameters.AddWithValue("@end", end);
+                cmd.Parameters.AddWithValue("@start", localStart);
+                cmd.Parameters.AddWithValue("@end", localEnd);
 
                 int overlapCheckCount = 0;
                 object overlapResult = cmd.ExecuteScalar();
@@ -196,16 +196,16 @@ namespace C969.Forms
             }
             DBConnection.closeConnection();
 
-            if (BusinessHoursValidation(start, end))
+            if (BusinessHoursValidation(localStart, localEnd))
             {
                 AddTheAppointment(GlobalVariables.LoggedInUserId);
             }
         }
 
-        private DateTime ConvertDateTimeToEST(DateTime localDateTime)
+        private DateTime ConvertDateTimeToEST(DateTime dateTimeInput)
         {
             TimeZoneInfo easternStandardTime = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            return TimeZoneInfo.ConvertTime(localDateTime, TimeZoneInfo.Local, easternStandardTime);
+            return TimeZoneInfo.ConvertTime(dateTimeInput, TimeZoneInfo.Local, easternStandardTime);
         }
 
         private bool BusinessHoursValidation(DateTime localStart, DateTime localEnd)

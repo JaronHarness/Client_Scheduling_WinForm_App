@@ -87,7 +87,7 @@
             // AddAppointmentStartLabel
             // 
             this.AddAppointmentStartLabel.AutoSize = true;
-            this.AddAppointmentStartLabel.Location = new System.Drawing.Point(13, 146);
+            this.AddAppointmentStartLabel.Location = new System.Drawing.Point(13, 147);
             this.AddAppointmentStartLabel.Name = "AddAppointmentStartLabel";
             this.AddAppointmentStartLabel.Size = new System.Drawing.Size(29, 13);
             this.AddAppointmentStartLabel.TabIndex = 5;
@@ -96,7 +96,7 @@
             // AddAppointmentEndLabel
             // 
             this.AddAppointmentEndLabel.AutoSize = true;
-            this.AddAppointmentEndLabel.Location = new System.Drawing.Point(13, 196);
+            this.AddAppointmentEndLabel.Location = new System.Drawing.Point(13, 193);
             this.AddAppointmentEndLabel.Name = "AddAppointmentEndLabel";
             this.AddAppointmentEndLabel.Size = new System.Drawing.Size(26, 13);
             this.AddAppointmentEndLabel.TabIndex = 6;
@@ -106,7 +106,7 @@
             // 
             this.AddAppointmentStartDateTimePicker.CustomFormat = "\"MM/dd/yyy hh:mm tt\"";
             this.AddAppointmentStartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddAppointmentStartDateTimePicker.Location = new System.Drawing.Point(80, 140);
+            this.AddAppointmentStartDateTimePicker.Location = new System.Drawing.Point(80, 141);
             this.AddAppointmentStartDateTimePicker.Name = "AddAppointmentStartDateTimePicker";
             this.AddAppointmentStartDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.AddAppointmentStartDateTimePicker.TabIndex = 7;
@@ -115,14 +115,14 @@
             // 
             this.AddAppointmentEndDateTimePicker.CustomFormat = "\"MM/dd/yyy hh:mm tt\"";
             this.AddAppointmentEndDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AddAppointmentEndDateTimePicker.Location = new System.Drawing.Point(80, 190);
+            this.AddAppointmentEndDateTimePicker.Location = new System.Drawing.Point(80, 187);
             this.AddAppointmentEndDateTimePicker.Name = "AddAppointmentEndDateTimePicker";
             this.AddAppointmentEndDateTimePicker.Size = new System.Drawing.Size(198, 20);
             this.AddAppointmentEndDateTimePicker.TabIndex = 8;
             // 
             // AddAppointmentSubmitButton
             // 
-            this.AddAppointmentSubmitButton.Location = new System.Drawing.Point(48, 242);
+            this.AddAppointmentSubmitButton.Location = new System.Drawing.Point(44, 226);
             this.AddAppointmentSubmitButton.Name = "AddAppointmentSubmitButton";
             this.AddAppointmentSubmitButton.Size = new System.Drawing.Size(75, 23);
             this.AddAppointmentSubmitButton.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             // AddAppointmentCancelButton
             // 
-            this.AddAppointmentCancelButton.Location = new System.Drawing.Point(173, 242);
+            this.AddAppointmentCancelButton.Location = new System.Drawing.Point(164, 226);
             this.AddAppointmentCancelButton.Name = "AddAppointmentCancelButton";
             this.AddAppointmentCancelButton.Size = new System.Drawing.Size(75, 23);
             this.AddAppointmentCancelButton.TabIndex = 10;
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 287);
+            this.ClientSize = new System.Drawing.Size(307, 274);
             this.Controls.Add(this.AddAppointmentCancelButton);
             this.Controls.Add(this.AddAppointmentSubmitButton);
             this.Controls.Add(this.AddAppointmentEndDateTimePicker);
