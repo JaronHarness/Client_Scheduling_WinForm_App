@@ -15,11 +15,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using C969.Global;
+using System.IO;
 
 namespace C969
 {
     public partial class Login: Form
     {
+
+        private readonly string logFilePath = Path.Combine(Environment.CurrentDirectory,"..\\..\\Login_History.txt");
+
         public Login()
         {
             InitializeComponent();
@@ -145,6 +149,8 @@ namespace C969
             }
             DBConnection.closeConnection();
 
+            RecordLoginHistory(usernameInput);
+
             AppointmentAlertsCheck(GlobalVariables.LoggedInUserId);
 
             string getUserQuery = $"SELECT COUNT(1) FROM user WHERE userName = '{usernameInput}' AND password = '{passwordInput}'";
@@ -187,7 +193,19 @@ namespace C969
             {
                 DBConnection.closeConnection();
             }
+        }
 
+        private void RecordLoginHistory(string userName)
+        {
+            DateTime timestamp = DateTime.Now;
+
+            string logEntry = $"{userName} logged in at {timestamp:G}.";
+
+            using (FileStream fs = new FileStream(logFilePath, FileMode.Create))
+            using (StreamWriter writer = new StreamWriter(fs))
+            {
+                writer.WriteLine(logEntry);
+            }
         }
     }
 }
