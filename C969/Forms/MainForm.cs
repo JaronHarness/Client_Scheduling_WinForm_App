@@ -98,6 +98,18 @@ namespace C969.Forms
             }
         }
 
+        private void MainEditAppointmentButton_Click(object sender, EventArgs e)
+        {
+            if (RetrieveAppointmentIdFromDGV() != -1)
+            {
+                int appointmentId = RetrieveAppointmentIdFromDGV();
+
+                EditAppointment newEditAppointmentFormInstance = new EditAppointment(appointmentId);
+                newEditAppointmentFormInstance.FormClosed += newAppointmentFormInstance_FormClosed;
+                newEditAppointmentFormInstance.ShowDialog();
+            }
+        }
+
         private int RetrieveCustomerIdFromDGV()
         {
             if (MainCustomerDGV.SelectedRows.Count > 0)
@@ -226,6 +238,5 @@ namespace C969.Forms
         {
             Application.Exit();
         }
-
     }
 }

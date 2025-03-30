@@ -138,6 +138,7 @@
             this.MainEditAppointmentButton.TabIndex = 8;
             this.MainEditAppointmentButton.Text = "Edit";
             this.MainEditAppointmentButton.UseVisualStyleBackColor = true;
+            this.MainEditAppointmentButton.Click += new System.EventHandler(this.MainEditAppointmentButton_Click);
             // 
             // MainDeleteAppointmentButton
             // 
