@@ -238,5 +238,35 @@ namespace C969.Forms
         {
             Application.Exit();
         }
+
+        private void MainAppointmentMontCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime selectedDate = e.Start;
+            LoadAppointmentBySelectedDate(selectedDate);
+        }
+
+        private void LoadAppointmentBySelectedDate(DateTime selectedDate)
+        {
+            string dateQuery = "SELECT appointmentId, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy,lastUpdate, lastUpdateBy FROM appointment WHERE CAST(start AS DATE) = @selectedDate";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(dateQuery, DBConnection.conn))
+            {
+                cmd.Parameters.AddWithValue("@selectedDate", selectedDate.Date);
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable appointmendDataTable = new DataTable();
+                    adapter.Fill(appointmendDataTable);
+                    MainAppointmentDGV.DataSource = appointmendDataTable;
+                }
+            }
+            DBConnection.closeConnection();
+        }
+
+        private void MainMonthCalendarResetButton_Click(object sender, EventArgs e)
+        {
+            LoadAppointmentDGV();
+        }
     }
 }

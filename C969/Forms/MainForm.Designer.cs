@@ -39,6 +39,8 @@
             this.MainEditAppointmentButton = new System.Windows.Forms.Button();
             this.MainDeleteAppointmentButton = new System.Windows.Forms.Button();
             this.MainAppointmentsLabel = new System.Windows.Forms.Label();
+            this.MainAppointmentMontCalendar = new System.Windows.Forms.MonthCalendar();
+            this.MainMonthCalendarResetButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainCustomerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainAppointmentDGV)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +50,7 @@
             this.MainCustomerDGV.AllowUserToAddRows = false;
             this.MainCustomerDGV.AllowUserToDeleteRows = false;
             this.MainCustomerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MainCustomerDGV.Location = new System.Drawing.Point(145, 39);
+            this.MainCustomerDGV.Location = new System.Drawing.Point(314, 48);
             this.MainCustomerDGV.MultiSelect = false;
             this.MainCustomerDGV.Name = "MainCustomerDGV";
             this.MainCustomerDGV.ReadOnly = true;
@@ -59,7 +61,7 @@
             // 
             // MainAddCustomerButton
             // 
-            this.MainAddCustomerButton.Location = new System.Drawing.Point(551, 10);
+            this.MainAddCustomerButton.Location = new System.Drawing.Point(720, 19);
             this.MainAddCustomerButton.Name = "MainAddCustomerButton";
             this.MainAddCustomerButton.Size = new System.Drawing.Size(75, 23);
             this.MainAddCustomerButton.TabIndex = 1;
@@ -69,7 +71,7 @@
             // 
             // MainEditCustomerButton
             // 
-            this.MainEditCustomerButton.Location = new System.Drawing.Point(632, 10);
+            this.MainEditCustomerButton.Location = new System.Drawing.Point(801, 19);
             this.MainEditCustomerButton.Name = "MainEditCustomerButton";
             this.MainEditCustomerButton.Size = new System.Drawing.Size(75, 23);
             this.MainEditCustomerButton.TabIndex = 2;
@@ -79,7 +81,7 @@
             // 
             // MainDeleteCustomerButton
             // 
-            this.MainDeleteCustomerButton.Location = new System.Drawing.Point(713, 10);
+            this.MainDeleteCustomerButton.Location = new System.Drawing.Point(882, 19);
             this.MainDeleteCustomerButton.Name = "MainDeleteCustomerButton";
             this.MainDeleteCustomerButton.Size = new System.Drawing.Size(75, 23);
             this.MainDeleteCustomerButton.TabIndex = 3;
@@ -90,7 +92,7 @@
             // MainCustomersLabel
             // 
             this.MainCustomersLabel.AutoSize = true;
-            this.MainCustomersLabel.Location = new System.Drawing.Point(142, 15);
+            this.MainCustomersLabel.Location = new System.Drawing.Point(311, 24);
             this.MainCustomersLabel.Name = "MainCustomersLabel";
             this.MainCustomersLabel.Size = new System.Drawing.Size(56, 13);
             this.MainCustomersLabel.TabIndex = 4;
@@ -98,7 +100,7 @@
             // 
             // MainExitButton
             // 
-            this.MainExitButton.Location = new System.Drawing.Point(713, 415);
+            this.MainExitButton.Location = new System.Drawing.Point(882, 415);
             this.MainExitButton.Name = "MainExitButton";
             this.MainExitButton.Size = new System.Drawing.Size(75, 23);
             this.MainExitButton.TabIndex = 5;
@@ -111,7 +113,7 @@
             this.MainAppointmentDGV.AllowUserToAddRows = false;
             this.MainAppointmentDGV.AllowUserToDeleteRows = false;
             this.MainAppointmentDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MainAppointmentDGV.Location = new System.Drawing.Point(145, 251);
+            this.MainAppointmentDGV.Location = new System.Drawing.Point(314, 251);
             this.MainAppointmentDGV.MultiSelect = false;
             this.MainAppointmentDGV.Name = "MainAppointmentDGV";
             this.MainAppointmentDGV.ReadOnly = true;
@@ -122,7 +124,7 @@
             // 
             // MainAddAppointmentButton
             // 
-            this.MainAddAppointmentButton.Location = new System.Drawing.Point(551, 222);
+            this.MainAddAppointmentButton.Location = new System.Drawing.Point(720, 222);
             this.MainAddAppointmentButton.Name = "MainAddAppointmentButton";
             this.MainAddAppointmentButton.Size = new System.Drawing.Size(75, 23);
             this.MainAddAppointmentButton.TabIndex = 7;
@@ -132,7 +134,7 @@
             // 
             // MainEditAppointmentButton
             // 
-            this.MainEditAppointmentButton.Location = new System.Drawing.Point(632, 222);
+            this.MainEditAppointmentButton.Location = new System.Drawing.Point(801, 222);
             this.MainEditAppointmentButton.Name = "MainEditAppointmentButton";
             this.MainEditAppointmentButton.Size = new System.Drawing.Size(75, 23);
             this.MainEditAppointmentButton.TabIndex = 8;
@@ -142,7 +144,7 @@
             // 
             // MainDeleteAppointmentButton
             // 
-            this.MainDeleteAppointmentButton.Location = new System.Drawing.Point(713, 222);
+            this.MainDeleteAppointmentButton.Location = new System.Drawing.Point(882, 222);
             this.MainDeleteAppointmentButton.Name = "MainDeleteAppointmentButton";
             this.MainDeleteAppointmentButton.Size = new System.Drawing.Size(75, 23);
             this.MainDeleteAppointmentButton.TabIndex = 9;
@@ -153,17 +155,36 @@
             // MainAppointmentsLabel
             // 
             this.MainAppointmentsLabel.AutoSize = true;
-            this.MainAppointmentsLabel.Location = new System.Drawing.Point(142, 227);
+            this.MainAppointmentsLabel.Location = new System.Drawing.Point(311, 227);
             this.MainAppointmentsLabel.Name = "MainAppointmentsLabel";
             this.MainAppointmentsLabel.Size = new System.Drawing.Size(71, 13);
             this.MainAppointmentsLabel.TabIndex = 10;
             this.MainAppointmentsLabel.Text = "Appointments";
             // 
+            // MainAppointmentMontCalendar
+            // 
+            this.MainAppointmentMontCalendar.Location = new System.Drawing.Point(42, 247);
+            this.MainAppointmentMontCalendar.Name = "MainAppointmentMontCalendar";
+            this.MainAppointmentMontCalendar.TabIndex = 11;
+            this.MainAppointmentMontCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MainAppointmentMontCalendar_DateSelected);
+            // 
+            // MainMonthCalendarResetButton
+            // 
+            this.MainMonthCalendarResetButton.Location = new System.Drawing.Point(194, 415);
+            this.MainMonthCalendarResetButton.Name = "MainMonthCalendarResetButton";
+            this.MainMonthCalendarResetButton.Size = new System.Drawing.Size(75, 23);
+            this.MainMonthCalendarResetButton.TabIndex = 12;
+            this.MainMonthCalendarResetButton.Text = "Reset";
+            this.MainMonthCalendarResetButton.UseVisualStyleBackColor = true;
+            this.MainMonthCalendarResetButton.Click += new System.EventHandler(this.MainMonthCalendarResetButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(983, 450);
+            this.Controls.Add(this.MainMonthCalendarResetButton);
+            this.Controls.Add(this.MainAppointmentMontCalendar);
             this.Controls.Add(this.MainAppointmentsLabel);
             this.Controls.Add(this.MainDeleteAppointmentButton);
             this.Controls.Add(this.MainEditAppointmentButton);
@@ -197,5 +218,7 @@
         private System.Windows.Forms.Button MainEditAppointmentButton;
         private System.Windows.Forms.Button MainDeleteAppointmentButton;
         private System.Windows.Forms.Label MainAppointmentsLabel;
+        private System.Windows.Forms.MonthCalendar MainAppointmentMontCalendar;
+        private System.Windows.Forms.Button MainMonthCalendarResetButton;
     }
 }
