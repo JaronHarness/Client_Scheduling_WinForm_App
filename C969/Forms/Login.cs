@@ -65,6 +65,7 @@ namespace C969
 
         private void AppointmentAlertsCheck(int userId)
         {
+
             string alertQuery = "SELECT appointmentId, start FROM appointment WHERE userId = @userId AND start >= NOW() AND start <= DATE_ADD(NOW(), INTERVAL 15 MINUTE)";
 
             DBConnection.startConnection();
@@ -80,10 +81,11 @@ namespace C969
                         {
                             int appointmentId = Convert.ToInt32(reader["appointmentId"]);
                             DateTime appointmentStart = Convert.ToDateTime(reader["start"]);
+                            
 
                             MessageBox.Show($"You have an upcoming appointment:\n" +
                                 $"Appointment ID: {appointmentId}\n" +
-                                $"Start Time: {appointmentStart}", 
+                                $"Start Time: {ConvertDateTimeToLocal(appointmentStart)}", 
                                 "Upcoming Appointment Alert",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -91,6 +93,13 @@ namespace C969
                     }
                 }
             }
+        }
+
+        private DateTime ConvertDateTimeToLocal(DateTime dateTimeInput)
+        {
+            dateTimeInput = DateTime.SpecifyKind(dateTimeInput, DateTimeKind.Utc);
+            TimeZoneInfo localTime = TimeZoneInfo.Local;
+            return dateTimeInput.ToLocalTime();
         }
 
         private void LoginFormExitButton_Click(object sender, EventArgs e)
