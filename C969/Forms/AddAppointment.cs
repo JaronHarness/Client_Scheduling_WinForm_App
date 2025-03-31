@@ -29,12 +29,12 @@ namespace C969.Forms
 
         private void AddTheAppointment(int userId)
         {
-            try
-            {
+            //try
+            //{
                 string typeInput = AddAppointmentTypeTextBox.Text.Trim();
                 int customerIdInput = RetrieveCustomerId();
-                DateTime startInput = AddAppointmentStartDateTimePicker.Value;
-                DateTime endInput = AddAppointmentEndDateTimePicker.Value;
+                DateTime startInput = ConvertDateTimeToUTC(AddAppointmentStartDateTimePicker.Value);
+                DateTime endInput = ConvertDateTimeToUTC(AddAppointmentEndDateTimePicker.Value);
 
                 string titleInput = "N/A";
                 string descriptionInput = "N/A";
@@ -69,15 +69,15 @@ namespace C969.Forms
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Appointment added successfully.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Attempt to add appointment was unsuccessful. Error: {ex.Message}");
-            }
-            finally
-            {
-                DBConnection.closeConnection();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Attempt to add appointment was unsuccessful. Error: {ex.Message}");
+            //}
+            //finally
+            //{
+            //    DBConnection.closeConnection();
+            //}
             this.Close();
         }
 
@@ -163,6 +163,9 @@ namespace C969.Forms
             DateTime localStart = AddAppointmentStartDateTimePicker.Value;
             DateTime localEnd = AddAppointmentEndDateTimePicker.Value;
 
+            DateTime startUTC = localStart.ToUniversalTime();
+            DateTime endUTC = localEnd.ToUniversalTime();
+
             // Validate Start before End DateTime
             if (localStart >= localEnd)
             {
@@ -177,8 +180,8 @@ namespace C969.Forms
             using (MySqlCommand cmd = new MySqlCommand(overlapAppointmentQuery, DBConnection.conn))
             {
                 cmd.Parameters.AddWithValue("@userId",userId);
-                cmd.Parameters.AddWithValue("@start", localStart);
-                cmd.Parameters.AddWithValue("@end", localEnd);
+                cmd.Parameters.AddWithValue("@start", startUTC);
+                cmd.Parameters.AddWithValue("@end", endUTC);
 
                 int overlapCheckCount = 0;
                 object overlapResult = cmd.ExecuteScalar();
@@ -201,23 +204,16 @@ namespace C969.Forms
                 AddTheAppointment(GlobalVariables.LoggedInUserId);
             }
         }
-
-        private DateTime ConvertDateTimeToEST(DateTime dateTimeInput)
-        {
-            TimeZoneInfo easternStandardTime = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            return TimeZoneInfo.ConvertTime(dateTimeInput, TimeZoneInfo.Local, easternStandardTime);
-        }
-
         private bool BusinessHoursValidation(DateTime localStart, DateTime localEnd)
         {
             DateTime startEST = ConvertDateTimeToEST(localStart);
             DateTime endEST = ConvertDateTimeToEST(localEnd);
 
-            TimeSpan businessStart = new TimeSpan(9,0,0);
-            TimeSpan businessEnd = new TimeSpan(17,0,0);
+            TimeSpan businessStart = new TimeSpan(9, 0, 0);
+            TimeSpan businessEnd = new TimeSpan(17, 0, 0);
 
             // Start and End time validation
-            if (startEST.TimeOfDay < businessStart || endEST.TimeOfDay < businessEnd)
+            if (startEST.TimeOfDay < businessStart || endEST.TimeOfDay > businessEnd)
             {
                 MessageBox.Show("Appointment time must be between 9:00 a.m. and 5:00 p.m. EST.");
                 return false;
@@ -230,6 +226,28 @@ namespace C969.Forms
                 return false;
             }
             return true;
+        }
+
+        private DateTime ConvertDateTimeToEST(DateTime dateTimeInput)
+        {
+            dateTimeInput = DateTime.SpecifyKind(dateTimeInput, DateTimeKind.Local);
+            TimeZoneInfo estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+
+            // Convert the DateTime to EST
+            return TimeZoneInfo.ConvertTime(dateTimeInput, estTimeZone);
+        }
+
+        private DateTime ConvertDateTimeToLocal(DateTime dateTimeInput)
+        {
+            dateTimeInput = DateTime.SpecifyKind(dateTimeInput, DateTimeKind.Utc);
+            TimeZoneInfo localTime = TimeZoneInfo.Local;
+            return dateTimeInput.ToLocalTime();
+        }
+
+        private DateTime ConvertDateTimeToUTC(DateTime dateTimeInput)
+        {
+            dateTimeInput = DateTime.SpecifyKind(dateTimeInput, DateTimeKind.Local);
+            return dateTimeInput.ToUniversalTime();
         }
     }
 }
