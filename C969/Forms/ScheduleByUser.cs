@@ -46,6 +46,16 @@ namespace C969.Forms
                 {
                     DataTable reportData = new DataTable();
                     adapter.Fill(reportData);
+
+                    foreach (DataRow row in reportData.Rows)
+                    {
+                        DateTime startUTC = Convert.ToDateTime(row["start"]);
+                        DateTime endUTC = Convert.ToDateTime(row["end"]);
+
+                        row["start"] = startUTC.ToLocalTime();
+                        row["end"] = endUTC.ToLocalTime();
+                    }
+
                     return reportData;
                 }
             }

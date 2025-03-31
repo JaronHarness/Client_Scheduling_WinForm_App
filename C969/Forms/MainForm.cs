@@ -176,6 +176,16 @@ namespace C969.Forms
             MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(appointmentDGVQuery, DBConnection.conn);
             DataTable appointmentDT = new DataTable();
             sqlDataAdapter.Fill(appointmentDT);
+
+            foreach (DataRow row in appointmentDT.Rows)
+            {
+                DateTime startUTC = Convert.ToDateTime(row["start"]);
+                DateTime endUTC = Convert.ToDateTime(row["end"]);
+
+                row["start"] = startUTC.ToLocalTime();
+                row["end"] = endUTC.ToLocalTime();
+            }
+
             MainAppointmentDGV.DataSource = appointmentDT;
 
             DBConnection.closeConnection();
