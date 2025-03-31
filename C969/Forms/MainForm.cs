@@ -277,7 +277,8 @@ namespace C969.Forms
 
         private void MainScheduleByEachUserButton_Click(object sender, EventArgs e)
         {
-
+            ScheduleByUser newScheduleByUserInstance = new ScheduleByUser();
+            newScheduleByUserInstance.Show();
         }
     }
 }
