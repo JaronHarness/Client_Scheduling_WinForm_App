@@ -43,6 +43,8 @@
             this.MainMonthCalendarResetButton = new System.Windows.Forms.Button();
             this.MainAppointmentTypeByMonthLabel = new System.Windows.Forms.Label();
             this.MainAppoinmentTypeByMonthButton = new System.Windows.Forms.Button();
+            this.MainScheduleForEachUserLabel = new System.Windows.Forms.Label();
+            this.MainScheduleByEachUserButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainCustomerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainAppointmentDGV)).BeginInit();
             this.SuspendLayout();
@@ -199,11 +201,32 @@
             this.MainAppoinmentTypeByMonthButton.UseVisualStyleBackColor = true;
             this.MainAppoinmentTypeByMonthButton.Click += new System.EventHandler(this.MainAppoinmentTypeByMonthButton_Click);
             // 
+            // MainScheduleForEachUserLabel
+            // 
+            this.MainScheduleForEachUserLabel.AutoSize = true;
+            this.MainScheduleForEachUserLabel.Location = new System.Drawing.Point(39, 109);
+            this.MainScheduleForEachUserLabel.Name = "MainScheduleForEachUserLabel";
+            this.MainScheduleForEachUserLabel.Size = new System.Drawing.Size(155, 13);
+            this.MainScheduleForEachUserLabel.TabIndex = 15;
+            this.MainScheduleForEachUserLabel.Text = "Schedule for Each User Report";
+            // 
+            // MainScheduleByEachUserButton
+            // 
+            this.MainScheduleByEachUserButton.Location = new System.Drawing.Point(42, 125);
+            this.MainScheduleByEachUserButton.Name = "MainScheduleByEachUserButton";
+            this.MainScheduleByEachUserButton.Size = new System.Drawing.Size(75, 23);
+            this.MainScheduleByEachUserButton.TabIndex = 16;
+            this.MainScheduleByEachUserButton.Text = "View Report";
+            this.MainScheduleByEachUserButton.UseVisualStyleBackColor = true;
+            this.MainScheduleByEachUserButton.Click += new System.EventHandler(this.MainScheduleByEachUserButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 450);
+            this.Controls.Add(this.MainScheduleByEachUserButton);
+            this.Controls.Add(this.MainScheduleForEachUserLabel);
             this.Controls.Add(this.MainAppoinmentTypeByMonthButton);
             this.Controls.Add(this.MainAppointmentTypeByMonthLabel);
             this.Controls.Add(this.MainMonthCalendarResetButton);
@@ -245,5 +268,7 @@
         private System.Windows.Forms.Button MainMonthCalendarResetButton;
         private System.Windows.Forms.Label MainAppointmentTypeByMonthLabel;
         private System.Windows.Forms.Button MainAppoinmentTypeByMonthButton;
+        private System.Windows.Forms.Label MainScheduleForEachUserLabel;
+        private System.Windows.Forms.Button MainScheduleByEachUserButton;
     }
 }

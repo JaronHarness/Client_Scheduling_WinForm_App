@@ -48,7 +48,7 @@ namespace C969.Forms
 
                 if (deletionResult == DialogResult.Yes)
                 {
-                    string deleteAppointmentQuery = "DELETE FROM appointment WHERE customerId = @customerId";   
+                    string deleteAppointmentQuery = "DELETE FROM appointment WHERE customerId = @customerId";
                     string deleteCustomerQuery = "DELETE FROM customer WHERE customerId = @customerId";
 
                     DBConnection.startConnection();
@@ -88,7 +88,7 @@ namespace C969.Forms
 
         private void MainEditCustomerButton_Click(object sender, EventArgs e)
         {
-            if (RetrieveCustomerIdFromDGV() != -1) 
+            if (RetrieveCustomerIdFromDGV() != -1)
             {
                 int customerId = RetrieveCustomerIdFromDGV();
 
@@ -271,27 +271,13 @@ namespace C969.Forms
 
         private void MainAppoinmentTypeByMonthButton_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = RetrieveAppointmentTypeByMonthReport();
-
-            AppointmentTypesByMonth newReportForm = new AppointmentTypesByMonth(dataTable);
-            newReportForm.Show();
+            AppointmentTypesByMonth newAppointmentTypesByMonthFormInstance = new AppointmentTypesByMonth();
+            newAppointmentTypesByMonthFormInstance.Show();
         }
 
-
-        private DataTable RetrieveAppointmentTypeByMonthReport()
+        private void MainScheduleByEachUserButton_Click(object sender, EventArgs e)
         {
-            string reportQuery = @"SELECT DATE_FORMAT(start, '%M %Y') AS Month, `type` AS `Appointment Type`, COUNT(*) AS Count FROM appointment GROUP BY DATE_FORMAT(start, '%M %Y'), `type` ORDER BY DATE_FORMAT(start, '%M %Y'), `type`;";
 
-            DBConnection.startConnection();
-            using (MySqlCommand cmd = new MySqlCommand(reportQuery, DBConnection.conn))
-            {
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    return dataTable;
-                }
-            }
         }
     }
 }
