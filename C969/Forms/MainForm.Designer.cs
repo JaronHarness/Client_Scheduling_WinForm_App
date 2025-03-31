@@ -45,6 +45,8 @@
             this.MainAppoinmentTypeByMonthButton = new System.Windows.Forms.Button();
             this.MainScheduleForEachUserLabel = new System.Windows.Forms.Label();
             this.MainScheduleByEachUserButton = new System.Windows.Forms.Button();
+            this.NumberOfUsersReportLabel = new System.Windows.Forms.Label();
+            this.NumberOfUserReportButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainCustomerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainAppointmentDGV)).BeginInit();
             this.SuspendLayout();
@@ -220,11 +222,32 @@
             this.MainScheduleByEachUserButton.UseVisualStyleBackColor = true;
             this.MainScheduleByEachUserButton.Click += new System.EventHandler(this.MainScheduleByEachUserButton_Click);
             // 
+            // NumberOfUsersReportLabel
+            // 
+            this.NumberOfUsersReportLabel.AutoSize = true;
+            this.NumberOfUsersReportLabel.Location = new System.Drawing.Point(39, 173);
+            this.NumberOfUsersReportLabel.Name = "NumberOfUsersReportLabel";
+            this.NumberOfUsersReportLabel.Size = new System.Drawing.Size(86, 13);
+            this.NumberOfUsersReportLabel.TabIndex = 17;
+            this.NumberOfUsersReportLabel.Text = "Number of Users";
+            // 
+            // NumberOfUserReportButton
+            // 
+            this.NumberOfUserReportButton.Location = new System.Drawing.Point(42, 189);
+            this.NumberOfUserReportButton.Name = "NumberOfUserReportButton";
+            this.NumberOfUserReportButton.Size = new System.Drawing.Size(75, 23);
+            this.NumberOfUserReportButton.TabIndex = 18;
+            this.NumberOfUserReportButton.Text = "View Report";
+            this.NumberOfUserReportButton.UseVisualStyleBackColor = true;
+            this.NumberOfUserReportButton.Click += new System.EventHandler(this.NumberOfUserReportButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 450);
+            this.Controls.Add(this.NumberOfUserReportButton);
+            this.Controls.Add(this.NumberOfUsersReportLabel);
             this.Controls.Add(this.MainScheduleByEachUserButton);
             this.Controls.Add(this.MainScheduleForEachUserLabel);
             this.Controls.Add(this.MainAppoinmentTypeByMonthButton);
@@ -270,5 +293,7 @@
         private System.Windows.Forms.Button MainAppoinmentTypeByMonthButton;
         private System.Windows.Forms.Label MainScheduleForEachUserLabel;
         private System.Windows.Forms.Button MainScheduleByEachUserButton;
+        private System.Windows.Forms.Label NumberOfUsersReportLabel;
+        private System.Windows.Forms.Button NumberOfUserReportButton;
     }
 }

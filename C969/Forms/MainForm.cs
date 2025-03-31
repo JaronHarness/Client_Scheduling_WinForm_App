@@ -280,5 +280,11 @@ namespace C969.Forms
             ScheduleByUser newScheduleByUserInstance = new ScheduleByUser();
             newScheduleByUserInstance.Show();
         }
+
+        private void NumberOfUserReportButton_Click(object sender, EventArgs e)
+        {
+            NumberOfUsers newNumberOfUsersInstance = new NumberOfUsers();
+            newNumberOfUsersInstance.Show();
+        }
     }
 }

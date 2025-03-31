@@ -141,6 +141,12 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NumberOfUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NumberOfUsers.Designer.cs">
+      <DependentUpon>NumberOfUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScheduleByUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NumberOfUsers.resx">
+      <DependentUpon>NumberOfUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleByUser.resx">
       <DependentUpon>ScheduleByUser.cs</DependentUpon>
