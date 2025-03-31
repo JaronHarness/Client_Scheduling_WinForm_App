@@ -41,6 +41,8 @@
             this.MainAppointmentsLabel = new System.Windows.Forms.Label();
             this.MainAppointmentMontCalendar = new System.Windows.Forms.MonthCalendar();
             this.MainMonthCalendarResetButton = new System.Windows.Forms.Button();
+            this.MainAppointmentTypeByMonthLabel = new System.Windows.Forms.Label();
+            this.MainAppoinmentTypeByMonthButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainCustomerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainAppointmentDGV)).BeginInit();
             this.SuspendLayout();
@@ -178,11 +180,32 @@
             this.MainMonthCalendarResetButton.UseVisualStyleBackColor = true;
             this.MainMonthCalendarResetButton.Click += new System.EventHandler(this.MainMonthCalendarResetButton_Click);
             // 
+            // MainAppointmentTypeByMonthLabel
+            // 
+            this.MainAppointmentTypeByMonthLabel.AutoSize = true;
+            this.MainAppointmentTypeByMonthLabel.Location = new System.Drawing.Point(39, 48);
+            this.MainAppointmentTypeByMonthLabel.Name = "MainAppointmentTypeByMonthLabel";
+            this.MainAppointmentTypeByMonthLabel.Size = new System.Drawing.Size(232, 13);
+            this.MainAppointmentTypeByMonthLabel.TabIndex = 13;
+            this.MainAppointmentTypeByMonthLabel.Text = "Number of Appointment Types by Month Report";
+            // 
+            // MainAppoinmentTypeByMonthButton
+            // 
+            this.MainAppoinmentTypeByMonthButton.Location = new System.Drawing.Point(42, 64);
+            this.MainAppoinmentTypeByMonthButton.Name = "MainAppoinmentTypeByMonthButton";
+            this.MainAppoinmentTypeByMonthButton.Size = new System.Drawing.Size(75, 23);
+            this.MainAppoinmentTypeByMonthButton.TabIndex = 14;
+            this.MainAppoinmentTypeByMonthButton.Text = "View Report";
+            this.MainAppoinmentTypeByMonthButton.UseVisualStyleBackColor = true;
+            this.MainAppoinmentTypeByMonthButton.Click += new System.EventHandler(this.MainAppoinmentTypeByMonthButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 450);
+            this.Controls.Add(this.MainAppoinmentTypeByMonthButton);
+            this.Controls.Add(this.MainAppointmentTypeByMonthLabel);
             this.Controls.Add(this.MainMonthCalendarResetButton);
             this.Controls.Add(this.MainAppointmentMontCalendar);
             this.Controls.Add(this.MainAppointmentsLabel);
@@ -220,5 +243,7 @@
         private System.Windows.Forms.Label MainAppointmentsLabel;
         private System.Windows.Forms.MonthCalendar MainAppointmentMontCalendar;
         private System.Windows.Forms.Button MainMonthCalendarResetButton;
+        private System.Windows.Forms.Label MainAppointmentTypeByMonthLabel;
+        private System.Windows.Forms.Button MainAppoinmentTypeByMonthButton;
     }
 }

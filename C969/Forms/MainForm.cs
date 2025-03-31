@@ -268,5 +268,30 @@ namespace C969.Forms
         {
             LoadAppointmentDGV();
         }
+
+        private void MainAppoinmentTypeByMonthButton_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = RetrieveAppointmentTypeByMonthReport();
+
+            AppointmentTypesByMonth newReportForm = new AppointmentTypesByMonth(dataTable);
+            newReportForm.Show();
+        }
+
+
+        private DataTable RetrieveAppointmentTypeByMonthReport()
+        {
+            string reportQuery = @"SELECT DATE_FORMAT(start, '%M %Y') AS Month, `type` AS `Appointment Type`, COUNT(*) AS Count FROM appointment GROUP BY DATE_FORMAT(start, '%M %Y'), `type` ORDER BY DATE_FORMAT(start, '%M %Y'), `type`;";
+
+            DBConnection.startConnection();
+            using (MySqlCommand cmd = new MySqlCommand(reportQuery, DBConnection.conn))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
     }
 }

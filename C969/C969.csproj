@@ -111,6 +111,12 @@
     <Compile Include="Forms\AddCustomer.Designer.cs">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AppointmentTypesByMonth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentTypesByMonth.Designer.cs">
+      <DependentUpon>AppointmentTypesByMonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EditAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,11 +144,15 @@
     <Compile Include="Global\GlobalVariables.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsData\TypesByMonthReportData.cs" />
     <EmbeddedResource Include="Forms\AddAppointment.resx">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentTypesByMonth.resx">
+      <DependentUpon>AppointmentTypesByMonth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditAppointment.resx">
       <DependentUpon>EditAppointment.cs</DependentUpon>
