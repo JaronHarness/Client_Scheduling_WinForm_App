@@ -35,16 +35,24 @@ namespace C969.Forms
             {
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Dictionary<int, string> customerIdNameData = new Dictionary<int, string>();
+                    var customerList = new List<(int customerId, string customerName)>();
 
                     while (reader.Read())
                     {
-                        int customerId = Convert.ToInt32(reader["customerId"]);
-                        string customerName = reader["customerName"].ToString();
-
-                        customerIdNameData[customerId] = customerNameQuery;
-                        EditAppointmentCustomerComboBox.Items.Add(customerName);
+                        customerList.Add((
+                            Convert.ToInt32(reader["customerId"]),
+                            reader["customerName"].ToString()
+                        ));
                     }
+
+                    // Used a Lambda to create a Dictionary from the customerList and reduce the ammount of code.
+                    var customerIdNameData = customerList.ToDictionary(
+                        customer => customer.customerId, // Uses the customerId as the Dict Key
+                        customer => customer.customerName // Uses the customerName as the Dict Value
+                    );
+                    // Lambda to iterate over the list and populate the comboBox. Simply the process with less lines of code.
+                    customerList.ForEach(customer => EditAppointmentCustomerComboBox.Items.Add(customer.customerName));
+
                     EditAppointmentCustomerComboBox.Tag = customerIdNameData;
                 }
             }

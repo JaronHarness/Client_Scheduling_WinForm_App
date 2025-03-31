@@ -65,7 +65,7 @@ namespace C969.Forms
         {
             ScheduleByUserDGV.DataSource = RetrieveUserReport();
 
-            // Lambda expression to hide unwanted columns
+            // Lambda expression to hide unwanted columns so the report looks clear with only the needed information being displayed.
             Action<string> hideColumn = columnName =>
             {
                 ScheduleByUserDGV.Columns[columnName].Visible = false;
