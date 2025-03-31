@@ -208,13 +208,9 @@ namespace C969
         {
             DateTime timestamp = DateTime.Now;
 
-            string logEntry = $"{userName} logged in at {timestamp:G}.";
+            string logEntry = $"{userName} logged in at {timestamp:G}.{Environment.NewLine}";
 
-            using (FileStream fs = new FileStream(logFilePath, FileMode.Create))
-            using (StreamWriter writer = new StreamWriter(fs))
-            {
-                writer.WriteLine(logEntry);
-            }
+            File.AppendAllText(logFilePath, logEntry);
         }
     }
 }
